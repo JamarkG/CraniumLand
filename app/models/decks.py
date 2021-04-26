@@ -4,9 +4,9 @@ class Deck(db.Model):
     __tablename__ = 'decks'
 
     id = db.Column(db.Integer, primary_key = True)
-    userid = db.Column(db.Integer, ForeignKey('users.id'))
+    userid = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String(100), nullable = False, unique = True)
-    tag = db.Column(db.Integer, ForeignKey('tags.id'), nullable = False)
+    tag = db.Column(db.Integer, db.ForeignKey('tags.id'), nullable = False)
 
     def to_dict(self):
         return {
