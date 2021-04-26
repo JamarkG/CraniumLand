@@ -1,8 +1,14 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import {login} from "../store/session"
 import LogoutButton from './auth/LogoutButton';
 
 const NavBar = () => {
+  const dispatch =useDispatch()
+  const user = useSelector(state => state.session.user)
+  console.log(user)
+
   return (
     <nav>
       <ul>
@@ -16,7 +22,12 @@ const NavBar = () => {
             Login
           </NavLink>
         </li>
-        <li>
+        <li  hidden={user}>
+          <button onClick={async (e)=>{await dispatch(login('demo@aa.io', 'password'))}}>
+            Demo Log In
+          </button>
+        </li>
+        <li  hidden={user}>
           <NavLink to="/sign-up" exact={true} activeClassName="active">
             Sign Up
           </NavLink>
