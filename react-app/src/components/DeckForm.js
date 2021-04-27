@@ -1,18 +1,29 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
+import createDeck from "../store/session"
 
  const DeckForm = () => {
      const dispatch = useDispatch();
      const [name, setName] = useState('');
      const [tag, setTag] = useState('');
+     const [tags, setTags] = useState('');
 
      const onCreate = async (e) => {
          e.preventDefault();
-         await dispatch(deckCreate(name, tag));
+         await dispatch(createDeck(name, tag));
      }
 
-     tags = tag.query
+     useEffect(() => {
+        async function fetchData() {
+          const response = await fetch("/api/tags/");          // MAKE TAGS 
+          const responseData = await response.json();
+          setTags(responseData.tags);
+        }
+        fetchData();
+      }, []);
+
+     
 
      return (
          <form onSubmit={onCreate}>
@@ -31,9 +42,12 @@ import { Redirect } from 'react-router-dom';
                      type='text'
                      name='tag'
                      onChange={(e) => setName(e.target.value)}
-                     value={name}
+                     value={tag}
+                     {tags.forEach(({ id, name }) => <option value={id} >{name}</option>)}
                  ></select>
              </div>
          </form>
      )
  }
+
+ export default DeckForm;
