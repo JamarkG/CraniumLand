@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Deck
-from app.models import Card
+from ..forms.deck_form import DeckForm
+from .auth_routes import validation_errors_to_error_messages
+from app.models import db, Deck, Card
 
 deck_routes = Blueprint('decks', __name__)
 
@@ -28,4 +29,5 @@ def create_deck():
         )
         db.session.add(deck)
         db.session.commit()
-    return
+        return deck.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

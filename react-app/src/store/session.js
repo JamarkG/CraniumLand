@@ -12,9 +12,9 @@ const removeUser = () => ({
     type: REMOVE_USER
 })
 
-const setDeck = (createdDeck) => ({
+const setDeck = (deck) => ({
     type: SET_DECK,
-    payload: createdDeck
+    payload: deck
 })
 
 // thunks
@@ -30,7 +30,7 @@ export const authenticate = () => async (dispatch) => {
         return;
     }
     dispatch(setUser(data))
-    
+
 }
 
 export const login = (email, password) => async (dispatch) => {
@@ -76,22 +76,25 @@ export const signUp = (username, email, password) => async (dispatch)=> {
         }),
     });
     const data = await response.json();
+    console.log(data)
     dispatch(setUser(data));
 }
 
 export const createDeck = (name, tag) => async (dispatch)=> {
-    const response = await fetch("/api/decks", {
+    const response = await fetch("/api/decks/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            name, 
+            name,
             tag
         }),
     });
+    console.log(response)
     const createdDeck = await response.json();
-    dispatch(setDeck(createdDeck))
+    console.log(createdDeck)
+    dispatch(setDeck({createdDeck}))
 }
 
 // reducer
@@ -103,11 +106,11 @@ const initialState = { user: null };
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case SET_USER:
-            return { user: action.payload };
+            return { ...state, user: action.payload };
         case REMOVE_USER:
             return { user: null };
         case SET_DECK:
-            return { deck: action.payload };
+            return {...state, deck: action.payload };
         default:
             return state;
     }

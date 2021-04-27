@@ -6,4 +6,4 @@ from app.models import Deck
 
 class DeckForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
-    tag = IntegerField('tag', validaotrs=[DataRequired()])
+    tag = IntegerField('tag', validators=[DataRequired()])

@@ -1,32 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
-import createDeck from "../store/session"
+import {createDeck} from "../store/session"
 
- const DeckForm = () => {
-     const dispatch = useDispatch();
-     const [name, setName] = useState('');
-     const [tag, setTag] = useState('');
-     const [tags, setTags] = useState('');
+const DeckForm = () => {
+    const dispatch = useDispatch();
+    const [name, setName] = useState('');
+    const [tag, setTag] = useState(1);
+    const [tags, setTags] = useState('');
 
-     const onCreate = async (e) => {
-         e.preventDefault();
-         await dispatch(createDeck(name, tag));
-     }
+    const onCreate = async (e) => {
+        e.preventDefault();
+        await dispatch(createDeck(name, tag));
+    }
 
-     useEffect(() => {
+    useEffect(() => {
         async function fetchData() {
-          const response = await fetch("/api/tags/");          // MAKE TAGS 
-          const responseData = await response.json();
-          setTags(responseData.tags);
+          const response = await fetch("/api/tags/");          // MAKE TAGS
+        const responseData = await response.json();
+        setTags(responseData.tags);
         }
+        console.log(tag)
+        console.log(name)
         fetchData();
-      }, []);
+    }, []);
 
-     
 
-     return (
-         <form onSubmit={onCreate}>
+    return (
+        <form onSubmit={onCreate}>
             <div>
                 <label>Deck Name</label>
                 <input
@@ -38,17 +39,18 @@ import createDeck from "../store/session"
             </div>
             <div>
                 <label>Deck Tag</label>
-                {tags.length > 0 && 
+                {tags.length > 0 &&
                 <select
                     type='text'
                     name='tag'
                     onChange={(e) => setTag(e.target.value)}
                     value={tag}
-                    >{tags.map(({ id, name }) => <option value={id} >{name}</option>)}</select>
+                    >{tags.map(({ id, name }) => <option key={id} value={id} >{name}</option>)}</select>
                 }
             </div>
-         </form>
-     )
- }
+            <button onSubmit={onCreate}> Create Deck </button>
+        </form>
+    )
+}
 
- export default DeckForm;
+export default DeckForm;
