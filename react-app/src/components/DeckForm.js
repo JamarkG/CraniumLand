@@ -27,25 +27,26 @@ import createDeck from "../store/session"
 
      return (
          <form onSubmit={onCreate}>
-             <div>
-                 <label>Deck Name</label>
-                 <input
-                 type='text'
-                 name='name'
-                 onChange={(e) => setName(e.target.value)}
-                 value={name}
-                 ></input>
-             </div>
-             <div>
-                 <label>Deck Name</label>
-                 <select
-                     type='text'
-                     name='tag'
-                     onChange={(e) => setName(e.target.value)}
-                     value={tag}
-                     {tags.forEach(({ id, name }) => <option value={id} >{name}</option>)}
-                 ></select>
-             </div>
+            <div>
+                <label>Deck Name</label>
+                <input
+                type='text'
+                name='name'
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                ></input>
+            </div>
+            <div>
+                <label>Deck Tag</label>
+                {tags.length > 0 && 
+                <select
+                    type='text'
+                    name='tag'
+                    onChange={(e) => setTag(e.target.value)}
+                    value={tag}
+                    >{tags.map(({ id, name }) => <option value={id} >{name}</option>)}</select>
+                }
+            </div>
          </form>
      )
  }
