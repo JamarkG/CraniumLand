@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Redirect } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import {createDeck} from "../store/deck"
 
 const DeckForm = () => {
@@ -9,9 +9,12 @@ const DeckForm = () => {
     const [tag, setTag] = useState(1);
     const [tags, setTags] = useState('');
 
+    const { deckId }  = useParams();
+
     const onCreate = async (e) => {
         e.preventDefault();
         await dispatch(createDeck(name, tag));
+        Redirect(`/decks/${deckId}/`)
     }
 
     useEffect(() => {

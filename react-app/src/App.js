@@ -10,6 +10,7 @@ import User from "./components/User";
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 import DeckForm from "./components/DeckForm"
+import CardForm from "./components/CardForm"
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -45,6 +46,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           <DeckForm />
+        </ProtectedRoute>
+        <ProtectedRoute path="/decks/:deckId/" exact={true}>
+          <CardForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
