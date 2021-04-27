@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
 
 
@@ -8,6 +8,8 @@ const CardForm = () => {
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
     const [cards, setCards] = useState([]);
+    const deck = useSelector(state => state.deckStorage.deck)
+
 
     const { deckId }  = useParams();
 
@@ -18,16 +20,17 @@ const CardForm = () => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                name,
-                tag
-            }),
+                question,
+                answer,
+                deckId
+            })
         });
-        const createdDeck = await response.json();
+        // const createdCard = await response.json();
     }
 
     const onCreate = async (e) => {
         e.preventDefault();
-        await dispatch(createCard(question, answer));
+        await createCard(question, answer);
     }
 
     useEffect(() => {
@@ -37,21 +40,22 @@ const CardForm = () => {
             setCards(responseData.cards);
         }
         fetchData();
-    }, [dispatch]);
+    }, [onCreate]);
 
 
     return (
         <>
-            <h2>{`Flashcards for ${deckName}`}</h2>
+            <h2>{`Flashcards for this deck`}</h2>
+            {cards.length > 0 &&
             <div>
                 {cards.map(({ id, question, answer }) => {
-                    <div className='cardDiv'>
+                    return <div>
                         <p key={`q.${id}`}>{question}</p>
                         <p key={`a.${id}`}>{answer}</p>
                         <button className='cardDeleteButton'>X</button>
                     </div>
                 })}
-            </div>
+            </div>}
             <form onSubmit={onCreate}>
                 <div>
                     <input

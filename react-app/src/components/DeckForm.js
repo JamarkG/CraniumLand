@@ -23,8 +23,6 @@ const DeckForm = () => {
         const responseData = await response.json();
         setTags(responseData.tags);
         }
-        console.log(tag)
-        console.log(name)
         fetchData();
     }, []);
 
