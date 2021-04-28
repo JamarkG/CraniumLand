@@ -19,10 +19,12 @@ const CardForm = () => {
         await dispatch(createCard(deckId, question, answer));
     }
 
-    useEffect(() => {
-        getCards(deckId)
+    useEffect( async () => {
+        await dispatch(getCards(deckId))
     }, []);
-
+    
+    console.log(deckId)
+    console.log(deck)
 
     return (
         <>
@@ -37,7 +39,7 @@ const CardForm = () => {
                     </div>
                 })}
             </div>}
-            <form onSubmit={createCard}>
+            <form onSubmit={onCreate}>
                 <div>
                     <input
                     type='text'

@@ -6,4 +6,4 @@ from app.models import Card
 
 class CardForm(FlaskForm):
     question = StringField('question', validators=[DataRequired()])
-    answer = IntegerField('answer', validators=[DataRequired()])
+    answer = StringField('answer', validators=[DataRequired()])

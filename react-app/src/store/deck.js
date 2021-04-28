@@ -40,7 +40,7 @@ export const getCards = (id) => async (dispatch)=> {
 }
 
 export const createCard = (deckId, question, answer) => async (dispatch) => {
-    const response = await fetch("/api/decks/:id/cards", {
+    const response = await fetch(`/api/decks/${deckId}/cards`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -52,10 +52,10 @@ export const createCard = (deckId, question, answer) => async (dispatch) => {
         })
     });
     const createdCard = await response.json();
-    dispatch(addCard(createdCard))
+    await dispatch(addCard(createdCard))
 }
 
-const initialState = { user: null };
+const initialState = { cards: [] };
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
