@@ -15,7 +15,8 @@ const DeckForm = () => {
     const onCreate = async (e) => {
         e.preventDefault();
         const createdDeck = await dispatch(createDeck(name, tag));
-        history.push(createdDeck.deck.id) // last thing we tried
+        history.push(`/deck/${createdDeck.id}/cards`) // last thing we tried
+        // console.log(createdDeck)
     }
 
     useEffect(() => {

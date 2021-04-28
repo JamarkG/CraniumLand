@@ -30,6 +30,7 @@ export const createDeck = (name, tag) => async (dispatch)=> {
     });
     const createdDeck = await response.json();
     dispatch(setDeck(createdDeck))
+    return createdDeck
 }
 
 export const getCards = (id) => async (dispatch)=> {
