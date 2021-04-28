@@ -9,22 +9,36 @@ const CardForm = () => {
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
     const [cards, setCards] = useState([]);
-    const deck = useSelector(state => state.deckStorage.deck)
-
+    const currentCards = useSelector(state => state.deckStorage.cards)
+    
 
     const { deckId }  = useParams();
 
     const onCreate = async (e) => {
         e.preventDefault();
         await dispatch(createCard(deckId, question, answer));
+        setAnswer('')
+        setQuestion('')
     }
 
-    useEffect( async () => {
+    useEffect(async () => {
         await dispatch(getCards(deckId))
+        setCards(currentCards)
     }, []);
+
+    useEffect(async() => {
+        setCards(currentCards)
+        
+    }, [onCreate])
+
+
+
+
     
     console.log(deckId)
-    console.log(deck)
+    // console.log(deck)
+
+    console.log("this is the cards length" + cards.length)
 
     return (
         <>
