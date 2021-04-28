@@ -32,13 +32,16 @@ const CardForm = () => {
     }, [onCreate])
 
 
+    const onDelete = async () => {
+        e.preventDefault();
+
+    }
 
 
     
-    console.log(deckId)
-    // console.log(deck)
 
-    console.log("this is the cards length" + cards.length)
+
+    
 
     return (
         <>
@@ -49,7 +52,9 @@ const CardForm = () => {
                     return <div>
                         <p key={`q.${id}`}>{question}</p>
                         <p key={`a.${id}`}>{answer}</p>
-                        <button className='cardDeleteButton'>X</button>
+                        <button className='cardDeleteButton'
+                        onClick={onDelete(id)}
+                        >X</button>
                     </div>
                 })}
             </div>}

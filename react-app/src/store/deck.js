@@ -1,6 +1,7 @@
 const SET_DECK = "deckStorage/SET_DECK";
 const SET_CARDS = "deckStorage/SET_CARDS";
 const ADD_CARD = "deckStorage/ADD_CARD";
+const DEL_CARD = "deckStorage/DEL_CARD";
 
 const addCard = (card) => ({
     type: ADD_CARD,
@@ -15,6 +16,11 @@ const setCards = (cards) => ({
 const setDeck = (deck) => ({
     type: SET_DECK,
     payload: deck
+})
+
+const delCard = (card) => ({
+    type: DEL_CARD,
+    payload: card
 })
 
 export const createDeck = (name, tag) => async (dispatch)=> {
@@ -55,6 +61,18 @@ export const createCard = (deckId, question, answer) => async (dispatch) => {
     await dispatch(addCard(createdCard))
 }
 
+export const deleteCard = (cardId) => async (dispatch) => {
+    const response = await fetch(`/api/decks/${deckId}/cards/${cardId}/delete`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        
+    });
+    const deletedCard = await response.json();
+    await dispatch(deleteCard(deletedCard))
+}
+
 const initialState = { cards: [] };
 
 export default function reducer(state = initialState, action) {
@@ -65,6 +83,8 @@ export default function reducer(state = initialState, action) {
             return {cards: action.payload };
         case ADD_CARD:
             return {cards: [...state.cards, action.payload] }
+        case DEL_CARD:
+            return {cards: [...state.cards]}
         default:
             return state;
     }
