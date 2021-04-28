@@ -10,7 +10,7 @@ const CardForm = () => {
     const [answer, setAnswer] = useState('');
     const [cards, setCards] = useState([]);
     const currentCards = useSelector(state => state.deckStorage.cards)
-    
+    // console.log(currentCards.length > 0)
 
     const { deckId }  = useParams();
 
@@ -20,13 +20,13 @@ const CardForm = () => {
         setAnswer('')
         setQuestion('')
     }
-    
+
     const onDelete = async (e) => {
         const cardId = e.target.value
         // console.log(e.target.value)
-       
+
         await dispatch(deleteCard(cardId, deckId))
-        
+
     }
 
     useEffect(async () => {
@@ -36,20 +36,20 @@ const CardForm = () => {
 
     useEffect(async() => {
         setCards(currentCards)
-        
+
     }, [onCreate])
-    
+
     useEffect(async() => {
         setCards(currentCards)
-        
+
     }, [onDelete])
 
-    
-    
+
+
     return (
         <>
             <h2>{`Flashcards for this deck`}</h2>
-            {currentCards.length > 0 &&
+            {currentCards &&
             <div>
                 {currentCards.map(({ id, question, answer }) => {
                     return <div>
