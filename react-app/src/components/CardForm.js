@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
-import { getCards, createCard } from "../store/deck";
+import { getCards, createCard, deleteCard } from "../store/deck";
 
 
 const CardForm = () => {
@@ -20,6 +20,14 @@ const CardForm = () => {
         setAnswer('')
         setQuestion('')
     }
+    
+    const onDelete = async (e) => {
+        const cardId = e.target.value
+        // console.log(e.target.value)
+       
+        await dispatch(deleteCard(cardId, deckId))
+        
+    }
 
     useEffect(async () => {
         await dispatch(getCards(deckId))
@@ -30,30 +38,26 @@ const CardForm = () => {
         setCards(currentCards)
         
     }, [onCreate])
-
-
-    const onDelete = async () => {
-        e.preventDefault();
-
-    }
-
+    
+    useEffect(async() => {
+        setCards(currentCards)
+        
+    }, [onDelete])
 
     
-
-
     
-
     return (
         <>
             <h2>{`Flashcards for this deck`}</h2>
-            {cards.length > 0 &&
+            {currentCards.length > 0 &&
             <div>
-                {cards.map(({ id, question, answer }) => {
+                {currentCards.map(({ id, question, answer }) => {
                     return <div>
                         <p key={`q.${id}`}>{question}</p>
                         <p key={`a.${id}`}>{answer}</p>
                         <button className='cardDeleteButton'
-                        onClick={onDelete(id)}
+                        onClick={onDelete}
+                        value={id}
                         >X</button>
                     </div>
                 })}
