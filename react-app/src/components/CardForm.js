@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
+import { getCards, createCard } from "../store/deck";
 
 
 const CardForm = () => {
@@ -13,34 +14,14 @@ const CardForm = () => {
 
     const { deckId }  = useParams();
 
-    const createCard = (question, answer) => async ()=> {
-        const response = await fetch("/api/decks/:id/cards", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                question,
-                answer,
-                deckId
-            })
-        });
-        // const createdCard = await response.json();
-    }
-
     const onCreate = async (e) => {
         e.preventDefault();
-        await createCard(question, answer);
+        await dispatch(createCard(deckId, question, answer));
     }
 
     useEffect(() => {
-        async function fetchData() {
-            const response = await fetch(`/api/decks/${deckId}/cards`);
-            const responseData = await response.json();
-            setCards(responseData.cards);
-        }
-        fetchData();
-    }, [onCreate]);
+        getCards(deckId)
+    }, []);
 
 
     return (
@@ -56,7 +37,7 @@ const CardForm = () => {
                     </div>
                 })}
             </div>}
-            <form onSubmit={onCreate}>
+            <form onSubmit={createCard}>
                 <div>
                     <input
                     type='text'
@@ -71,7 +52,7 @@ const CardForm = () => {
                     value={answer}
                     ></input>
                 </div>
-                <button onSubmit={onCreate}> Save Cards </button>
+                <button type='submit'> Save Cards </button>
             </form>
         </>
     )

@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Redirect, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from 'react-router-dom';
 import {createDeck} from "../store/deck"
 
 const DeckForm = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [name, setName] = useState('');
     const [tag, setTag] = useState(1);
     const [tags, setTags] = useState('');
 
-    const { deckId }  = useParams();
-
+    // const deckId = useSelector(state => state.deckStorage.deck.id)
+    
     const onCreate = async (e) => {
         e.preventDefault();
-        await dispatch(createDeck(name, tag));
-        Redirect(`/decks/${deckId}/`)
+        const createdDeck = await dispatch(createDeck(name, tag));
+        history.push(createdDeck.deck.id) // last thing we tried
     }
 
     useEffect(() => {
@@ -49,7 +50,7 @@ const DeckForm = () => {
                     >{tags.map(({ id, name }) => <option key={id} value={id} >{name}</option>)}</select>
                 }
             </div>
-            <button onSubmit={onCreate}> Create Deck </button>
+            <button type='submit'> Create Deck </button>
         </form>
     )
 }
