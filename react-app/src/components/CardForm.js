@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from 'react-router-dom';
-import { getCards, createCard, deleteCard, grabDeck } from "../store/deck";
+import { useParams, useHistory } from 'react-router-dom';
+import { getCards, createCard, deleteCard, grabDeck, deleteDeck } from "../store/deck";
 
 
 const CardForm = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
     const [cards, setCards] = useState([]);
@@ -33,6 +34,13 @@ const CardForm = () => {
         await dispatch(deleteCard(cardId, deckId))
 
     }
+
+    const deckDelete = async (e) => {
+        e.preventDefault();
+        await dispatch(deleteDeck(deckId))
+        history.push(`/`)
+    }
+
 
     useEffect(async () => {
         await dispatch(getCards(deckId))
@@ -86,6 +94,8 @@ const CardForm = () => {
                 </div>
                 <button type='submit'> Save Cards </button>
             </form>}
+            <button>Study This Deck</button>
+            {<button onClick={deckDelete}>Delete This Deck</button>}
         </>
     )
 }

@@ -51,6 +51,17 @@ def create_deck():
         return deck.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+@deck_routes.route('/<int:deckId>/delete', methods=['DELETE'])
+def delete_deck(deckId):
+    deck = Deck.query.get(deckId)
+    # print(deck)
+    cards = Card.query.filter_by(deckid=deckId).all()
+    for card in cards:
+        db.session.delete(card)
+    db.session.delete(deck)
+    db.session.commit()
+    return {"success" : "this worked"}
+
 
 @deck_routes.route('/<int:deckId>/cards/<int:cardId>/delete', methods=['DELETE'])
 def delete_card(deckId, cardId):
