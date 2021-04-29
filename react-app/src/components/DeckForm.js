@@ -11,11 +11,11 @@ const DeckForm = () => {
     const [tags, setTags] = useState('');
 
     // const deckId = useSelector(state => state.deckStorage.deck.id)
-    
+
     const onCreate = async (e) => {
         e.preventDefault();
         const createdDeck = await dispatch(createDeck(name, tag));
-        history.push(`/deck/${createdDeck.id}`)
+        history.push(`/decks/${createdDeck.id}`)
     }
 
     useEffect(() => {

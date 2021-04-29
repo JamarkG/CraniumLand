@@ -12,13 +12,16 @@ def decks():
     decks = Deck.query.all()
     return {"decks" : [deck.to_dict() for deck in decks]}
 
-@deck_routes.route('/<int:id>/cards')
+@deck_routes.route('/<int:id>')
 def cards(id):
     deck = Deck.query.get(id)
     cards = Card.query.filter_by(deckid=id).all()
-    return {'cards': [card.to_dict() for card in cards]}
+    return {
+        'deck': deck.to_dict(),
+        'cards': [card.to_dict() for card in cards]
+        }
 
-@deck_routes.route('/<int:id>/cards', methods=['POST'])
+@deck_routes.route('/<int:id>', methods=['POST'])
 def create_card(id):
     form = CardForm()
     form['csrf_token'].data = request.cookies['csrf_token']
