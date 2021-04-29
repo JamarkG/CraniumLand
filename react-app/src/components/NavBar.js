@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import {login} from "../store/session"
 import LogoutButton from './auth/LogoutButton';
 
 const NavBar = () => {
-  const dispatch =useDispatch()
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [searchTerm, setSearchTerm] = useState('')
   const user = useSelector(state => state.session.user)
-  console.log(user)
+  console.log(searchTerm)
 
-  // const deckNameList = [DeckNameList];
-  // const searchQuery = ""
-  // const result = deckNameList.filter(word => word.toLowerCase().includes(searchQuery.toLowerCase()));
+  const searchGo = async (e) => {
+    e.preventDefault();
+
+    history.push(`/search/${searchTerm}`)
+  }
 
 
   return (
@@ -47,8 +51,11 @@ const NavBar = () => {
         </li>
       </ul>
       <form>
-        <input type='text' placeHolder='Search by Deck Name or Tags'></input>
-        <button></button>
+        <input
+        type='text'
+        placeholder='Search by Deck Name or Tags'
+        onChange={(e) => setSearchTerm(e.target.value)}></input>
+        <button onClick={searchGo}>Search</button>
       </form>
     </nav>
   );

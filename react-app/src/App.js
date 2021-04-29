@@ -12,12 +12,14 @@ import { authenticate } from "./store/session";
 import DeckForm from "./components/DeckForm"
 import CardForm from "./components/CardForm"
 import StudyHall from "./components/StudyHall"
+import Search from "./components/Search"
 
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
   const dispatch = useDispatch()
   const [loaded, setLoaded] = useState(false);
+  // let searchTerm = 
 
   useEffect(() => {
     (async() => {
@@ -54,6 +56,9 @@ function App() {
         </ProtectedRoute>
         <Route path="/decks/:deckId/study" exact={true}>
           <StudyHall />
+        </Route>
+        <Route path="/search/:searchTerm" exact={true}>
+          <Search />
         </Route>
       </Switch>
     </BrowserRouter>
