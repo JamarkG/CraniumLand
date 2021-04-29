@@ -41,6 +41,11 @@ const CardForm = () => {
         history.push(`/`)
     }
 
+    const studyDeck = async (e) => {
+        e.preventDefault();
+        await dispatch()
+        history.push(`/decks/${deckId}/study`)
+    }
 
     useEffect(async () => {
         await dispatch(getCards(deckId))
@@ -77,25 +82,27 @@ const CardForm = () => {
                 })}
             </div>}
             {currentDeck && currentDeck.userid === userId &&
-            <form onSubmit={onCreate}>
-                <div>
-                    <input
-                    type='text'
-                    name='question'
-                    onChange={(e) => setQuestion(e.target.value)}
-                    value={question}
-                    ></input>
-                    <input
-                    type='text'
-                    name='answer'
-                    onChange={(e) => setAnswer(e.target.value)}
-                    value={answer}
-                    ></input>
-                </div>
-                <button type='submit'> Save Cards </button>
-            </form>}
-            <button>Study This Deck</button>
-            {<button onClick={deckDelete}>Delete This Deck</button>}
+            <>
+                <form onSubmit={onCreate}>
+                    <div>
+                        <input
+                        type='text'
+                        name='question'
+                        onChange={(e) => setQuestion(e.target.value)}
+                        value={question}
+                        ></input>
+                        <input
+                        type='text'
+                        name='answer'
+                        onChange={(e) => setAnswer(e.target.value)}
+                        value={answer}
+                        ></input>
+                    </div>
+                    <button type='submit'> Save Cards </button>
+                </form>
+                <button onClick={deckDelete}>Delete This Deck</button>
+            </>}
+            <button onClick={studyDeck}>Study This Deck</button>
         </>
     )
 }

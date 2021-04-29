@@ -11,6 +11,8 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import DeckForm from "./components/DeckForm"
 import CardForm from "./components/CardForm"
+import StudyHall from "./components/StudyHall"
+
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -38,9 +40,9 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/decks" exact={true} >
+        <Route path="/decks" exact={true} >
           <DeckList/>
-        </ProtectedRoute>
+        </Route>
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
         </ProtectedRoute>
@@ -50,6 +52,9 @@ function App() {
         <ProtectedRoute path="/decks/:deckId" exact={true}>
           <CardForm />
         </ProtectedRoute>
+        <Route path="/decks/:deckId/study" exact={true}>
+          <StudyHall />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
