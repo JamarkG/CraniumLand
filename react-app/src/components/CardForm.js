@@ -68,7 +68,8 @@ const CardForm = () => {
                     </div>
                 })}
             </div>}
-            {currentDeck && currentDeck.decks.userid === userId && <form onSubmit={onCreate}>
+            {currentDeck && currentDeck.decks.userid === userId &&
+            <form onSubmit={onCreate}>
                 <div>
                     <input
                     type='text'

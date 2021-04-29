@@ -89,7 +89,7 @@ export default function reducer(state = initialState, action) {
         case SET_CARDS:
             return {cards: action.payload };
         case ADD_CARD:
-            if(state.cards.length > 0){
+            if(state.cards){
                 return {cards: [...state.cards, action.payload] }
             }
             return {cards: [action.payload]}
