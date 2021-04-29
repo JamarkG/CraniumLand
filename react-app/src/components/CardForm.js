@@ -43,7 +43,6 @@ const CardForm = () => {
 
     const studyDeck = async (e) => {
         e.preventDefault();
-        await dispatch()
         history.push(`/decks/${deckId}/study`)
     }
 

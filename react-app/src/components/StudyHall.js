@@ -1,32 +1,50 @@
-import React, { useEffect, useState, useSelector } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
-function StudyHall() {
-
-//   useEffect(() => {
-//     async function fetchData() {
-//       const response = await fetch("/api/decks/");
-//       const responseData = await response.json();
-//       setDecks(responseData.decks);
-//     }
-//     fetchData();
-//   }, []);
+const StudyHall = () => {
+    const history = useHistory();
 
     const deckName = useSelector(state => state.deckStorage.deck.name)
     const cards = useSelector(state => state.deckStorage.cards)
 
+    const [currentCard, setCurrentCard] = useState(0);
+    let cardText = cards[currentCard].question
+    const [cardChars, setCardChars] = useState(cardText);
 
-  return (
-    <>
-        <h1>{`Deck: ${deckName}`}</h1>
-        <div>
+    const flipCard = () => {
+        if (cardChars === cardText){
+            setCardChars(cards[currentCard].answer)
+        }
+        else {
+            setCardChars(cards[currentCard].question)
+        }
+    }
+
+    useEffect(() => {
+
+    }, [flipCard])
+
+    const nextCard = () => {
+        if (cards[currentCard + 1]){
+            setCurrentCard(currentCard + 1)
+            setCardChars(cards[currentCard + 1].question)
+        } else {
+            history.push('/decks')
+        }
+    }
+
+    return (
+        <>
+            <h1>{`Deck: ${deckName}`}</h1>
+            <p>{`${currentCard +1}/${cards.length}`}</p>
             <div>
-                <p>{cards[0].question}</p>
-                <p>{cards[0].answer}</p>
+                <p>{cardChars}</p>
             </div>
-        </div>
-    </>
-  );
+            <button onClick={flipCard}>Flip Card</button>
+            <button onClick={nextCard}>Next Card</button>
+        </>
+    );
 }
 
 export default StudyHall;
