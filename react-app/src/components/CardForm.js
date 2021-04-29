@@ -11,14 +11,14 @@ const CardForm = () => {
     const [answer, setAnswer] = useState('');
     const [cards, setCards] = useState([]);
     const currentCards = useSelector(state => state.deckStorage.cards)
-    // console.log(currentCards.length > 0)
     const currentDeck = useSelector(state => state.deckStorage.deck)
+    const currentStore = useSelector(state => state.deckStorage)
 
+    
 
     const { deckId }  = useParams();
     const userId = useSelector(state => state.session.user.id)
-    // const deckUserId = currentDeck.decks.userId
-    // console.log(currentDeck.decks)
+    
 
     const onCreate = async (e) => {
         e.preventDefault();
@@ -42,6 +42,7 @@ const CardForm = () => {
     }
 
     const studyDeck = async (e) => {
+
         e.preventDefault();
         history.push(`/decks/${deckId}/study`)
     }
@@ -62,7 +63,7 @@ const CardForm = () => {
 
     }, [onDelete])
 
-
+    
 
     return (
         <>
@@ -101,7 +102,11 @@ const CardForm = () => {
                 </form>
                 <button onClick={deckDelete}>Delete This Deck</button>
             </>}
-            <button onClick={studyDeck}>Study This Deck</button>
+            {currentCards && !!currentCards.length &&
+            <div>
+                <button onClick={studyDeck}>Study This Deck</button>
+            </div>
+            }
         </>
     )
 }

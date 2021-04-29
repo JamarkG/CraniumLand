@@ -1,23 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory, useParams } from "react-router-dom";
+import { getCards, grabDeck } from "../store/deck";
 
 const StudyHall = () => {
     const history = useHistory();
-
-    const deckName = useSelector(state => state.deckStorage.deck.name)
+    const dispatch = useDispatch()
+    const deck = useSelector(state => state.deckStorage.deck)
     const cards = useSelector(state => state.deckStorage.cards)
 
     const [currentCard, setCurrentCard] = useState(0);
-    let cardText = cards[currentCard].question
-    const [cardChars, setCardChars] = useState(cardText);
+    // let cardText = cards[currentCard].question
+    const [cardChars, setCardChars] = useState("");
+    const [flipped, setFlipped] = useState(false)
+
+    const { deckId }  = useParams();
+
+    useEffect(async () => {
+        await dispatch(getCards(deckId))
+        await dispatch(grabDeck(deckId))
+    }, []);
 
     const flipCard = () => {
-        if (cardChars === cardText){
-            setCardChars(cards[currentCard].answer)
+        if (flipped === false){
+            // setCardChars(cards[currentCard].answer)
+            setFlipped(true)
         }
         else {
-            setCardChars(cards[currentCard].question)
+            // setCardChars(cards[currentCard].question)
+            setFlipped(false)
         }
     }
 
@@ -28,21 +39,28 @@ const StudyHall = () => {
     const nextCard = () => {
         if (cards[currentCard + 1]){
             setCurrentCard(currentCard + 1)
-            setCardChars(cards[currentCard + 1].question)
+            // setCardChars(cards[currentCard + 1].question)
         } else {
             history.push('/decks')
         }
     }
 
+    
+
+
     return (
         <>
-            <h1>{`Deck: ${deckName}`}</h1>
-            <p>{`${currentCard +1}/${cards.length}`}</p>
-            <div>
-                <p>{cardChars}</p>
-            </div>
-            <button onClick={flipCard}>Flip Card</button>
-            <button onClick={nextCard}>Next Card</button>
+            {deck && (
+                <>
+                    <h1>{`Deck: ${deck.name}`}</h1>
+                    <p>{`${currentCard +1}/${cards.length}`}</p>
+                    <div>
+                        <p>{(flipped) ? cards[currentCard].question : cards[currentCard].answer}</p>
+                    </div>
+                    <button onClick={flipCard}>Flip Card</button>
+                    <button onClick={nextCard}>Next Card</button>
+                </>
+            )}
         </>
     );
 }
