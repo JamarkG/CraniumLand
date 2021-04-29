@@ -47,7 +47,7 @@ function App() {
         <ProtectedRoute path="/" exact={true}>
           <DeckForm />
         </ProtectedRoute>
-        <ProtectedRoute path="/deck/:deckId" exact={true}>
+        <ProtectedRoute path="/decks/:deckId" exact={true}>
           <CardForm />
         </ProtectedRoute>
       </Switch>

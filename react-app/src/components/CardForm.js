@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
-import { getCards, createCard, deleteCard } from "../store/deck";
+import { getCards, createCard, deleteCard, grabDeck } from "../store/deck";
 
 
 const CardForm = () => {
@@ -11,8 +11,13 @@ const CardForm = () => {
     const [cards, setCards] = useState([]);
     const currentCards = useSelector(state => state.deckStorage.cards)
     // console.log(currentCards.length > 0)
+    const currentDeck = useSelector(state => state.deckStorage.deck)
+
 
     const { deckId }  = useParams();
+    const userId = useSelector(state => state.session.user.id)
+    // const deckUserId = currentDeck.decks.userId
+    // console.log(currentDeck.decks)
 
     const onCreate = async (e) => {
         e.preventDefault();
@@ -31,6 +36,7 @@ const CardForm = () => {
 
     useEffect(async () => {
         await dispatch(getCards(deckId))
+        await dispatch(grabDeck(deckId))
         setCards(currentCards)
     }, []);
 
@@ -62,7 +68,7 @@ const CardForm = () => {
                     </div>
                 })}
             </div>}
-            <form onSubmit={onCreate}>
+            {currentDeck && currentDeck.decks.userid === userId && <form onSubmit={onCreate}>
                 <div>
                     <input
                     type='text'
@@ -78,7 +84,7 @@ const CardForm = () => {
                     ></input>
                 </div>
                 <button type='submit'> Save Cards </button>
-            </form>
+            </form>}
         </>
     )
 }

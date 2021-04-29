@@ -23,6 +23,13 @@ const delCard = (card) => ({
     payload: card
 })
 
+export const grabDeck = (id) => async (dispatch)=> {
+    const response = await fetch(`/api/decks/${id}`);
+    const grabbedDeck = await response.json();
+    dispatch(setDeck(grabbedDeck))
+    return grabbedDeck
+}
+
 export const createDeck = (name, tag) => async (dispatch)=> {
     const response = await fetch("/api/decks/", {
         method: "POST",
@@ -46,7 +53,7 @@ export const getCards = (id) => async (dispatch)=> {
 }
 
 export const createCard = (deckId, question, answer) => async (dispatch) => {
-    const response = await fetch(`/api/decks/${deckId}/cards`, {
+    const response = await fetch(`/api/decks/${deckId}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -67,7 +74,7 @@ export const deleteCard = (cardId, deckId) => async (dispatch) => {
         headers: {
             "Content-Type": "application/json",
         },
-        
+
     });
     const deletedCard = await response.json();
     await dispatch(delCard(cardId))
@@ -82,7 +89,10 @@ export default function reducer(state = initialState, action) {
         case SET_CARDS:
             return {cards: action.payload };
         case ADD_CARD:
-            return {cards: [...state.cards, action.payload] }
+            if(state.cards.length > 0){
+                return {cards: [...state.cards, action.payload] }
+            }
+            return {cards: [action.payload]}
         case DEL_CARD:
             return {cards: [...state.cards.filter(card => card.id !== Number(action.payload))]}
         default:

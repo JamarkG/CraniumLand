@@ -16,7 +16,7 @@ function DeckList() {
   const deckComponents = decks.map((deck) => {
     return (
       <li key={deck.id}>
-        <NavLink to={`/deck/${deck.id}`}>{deck.name}</NavLink>
+        <NavLink to={`/decks/${deck.id}`}>{deck.name}</NavLink>
       </li>
     );
   });
