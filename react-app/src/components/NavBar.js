@@ -41,6 +41,10 @@ const NavBar = () => {
           <LogoutButton />
         </li>
       </ul>
+      <form>
+        <input type='text' placeHolder='Search by Deck Name or Tags'></input>
+        <button></button>
+      </form>
     </nav>
   );
 }
