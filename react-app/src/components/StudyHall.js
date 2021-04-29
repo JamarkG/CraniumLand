@@ -10,7 +10,7 @@ const StudyHall = () => {
     const cards = useSelector(state => state.deckStorage.cards)
 
     const [currentCard, setCurrentCard] = useState(0);
-    // let cardText = cards[currentCard].question
+    
     const [cardChars, setCardChars] = useState("");
     const [flipped, setFlipped] = useState(false)
 

@@ -9,6 +9,11 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user)
   console.log(user)
 
+  // const deckNameList = [DeckNameList];
+  // const searchQuery = ""
+  // const result = deckNameList.filter(word => word.toLowerCase().includes(searchQuery.toLowerCase()));
+
+
   return (
     <nav>
       <ul>
