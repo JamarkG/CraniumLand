@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from 'react-router-dom';
 import { getCards, createCard, deleteCard, grabDeck, deleteDeck } from "../store/deck";
-
+import './CSS/CardForm.css'
 
 const CardForm = () => {
     const dispatch = useDispatch();
@@ -14,11 +14,11 @@ const CardForm = () => {
     const currentDeck = useSelector(state => state.deckStorage.deck)
     const currentStore = useSelector(state => state.deckStorage)
 
-    
+
 
     const { deckId }  = useParams();
     const userId = useSelector(state => state.session.user.id)
-    
+
 
     const onCreate = async (e) => {
         e.preventDefault();
@@ -63,51 +63,69 @@ const CardForm = () => {
 
     }, [onDelete])
 
-    
+
 
     return (
-        <>
-            <h2>{`Flashcards for this deck`}</h2>
+        <div id='CardFormDiv'>
+            <div className='CardFormHeaders'>
+                <h2>{`Flashcards for this deck`}</h2>
+                <h3 id='h3Text'><span className='h3Margin'></span>Question<span className='h3Margin2'></span>Answer</h3>
+            </div>
             {currentCards &&
-            <div>
+            <div className='CardHolderDiv'>
                 {currentCards.map(({ id, question, answer }) => {
-                    return <div>
-                        <p key={`q.${id}`}>{question}</p>
-                        <p key={`a.${id}`}>{answer}</p>
+                    return <div className='CardDiv'>
+                        <div className='CardQuestionDiv'>
+                            <p className='CardText' key={`q.${id}`}>{question}</p>
+                        </div>
+                        <div className='CardAnswerDiv'>
+                            <p className='CardText' key={`a.${id}`}>{answer}</p>
+                        </div>
                         <button className='cardDeleteButton'
                         onClick={onDelete}
                         value={id}
-                        >X</button>
+                        >x</button>
                     </div>
                 })}
             </div>}
             {currentDeck && currentDeck.userid === userId &&
-            <>
-                <form onSubmit={onCreate}>
-                    <div>
-                        <input
-                        type='text'
-                        name='question'
-                        onChange={(e) => setQuestion(e.target.value)}
-                        value={question}
-                        ></input>
-                        <input
-                        type='text'
-                        name='answer'
-                        onChange={(e) => setAnswer(e.target.value)}
-                        value={answer}
-                        ></input>
-                    </div>
-                    <button type='submit'> Save Cards </button>
-                </form>
-                <button onClick={deckDelete}>Delete This Deck</button>
-            </>}
-            {currentCards && !!currentCards.length &&
-            <div>
-                <button onClick={studyDeck}>Study This Deck</button>
+            <div className='CardHolderDivInput'>
+                <div className='CardDiv'>
+                    <form className='CardDiv' onSubmit={onCreate}>
+                        <div className='CardQuestionDiv'>
+                            <h3 className='InputHeader'>Add new question:</h3>
+                            <input
+                            className='InputCardText'
+                            type='text'
+                            name='question'
+                            onChange={(e) => setQuestion(e.target.value)}
+                            value={question}
+                            ></input>
+                        </div>
+                        <div className='CardAnswerDiv'>
+                        <h3 className='InputHeader'>Add new answer:</h3>
+                            <input
+                            className='InputCardText'
+                            type='text'
+                            name='answer'
+                            onChange={(e) => setAnswer(e.target.value)}
+                            value={answer}
+                            ></input>
+                        </div>
+                        <button className='cardAddButton' type='submit'>+</button>
+                    </form>
+                </div>
+            </div>}
+            <div className='BottomButtonDiv'>
+                <button id='DeleteDeckButton' className='BottomButton' onClick={deckDelete}>Delete This Deck</button>
+                <span className='BottomButtonMargin'></span>
+                {currentCards && !!currentCards.length &&
+                <div>
+                    <button id='StudyDeckButton' className='BottomButton' onClick={studyDeck}>Study This Deck</button>
+                </div>
+                }
             </div>
-            }
-        </>
+        </div>
     )
 }
 
