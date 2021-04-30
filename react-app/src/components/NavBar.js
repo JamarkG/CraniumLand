@@ -4,6 +4,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import {login} from "../store/session"
 import LogoutButton from './auth/LogoutButton';
 import './CSS/NavBar.css';
+import logo from './CraniumLandLogo.png';
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -21,37 +22,41 @@ const NavBar = () => {
 
   return (
     <nav>
-      <div className='TopHalfNav'>
-        <div className='NavButton' id='HomeLink'>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
-          </NavLink>
+      <div className='TopDivHolder'>
+        <div className='TopHalfNav'>
+          <div hidden={user} className='NavButton' id='LoginButton'>
+            <NavLink to="/login" id='LoginButtonText' exact={true} activeClassName="active">
+              Login
+            </NavLink>
+          </div>
+          <div hidden={user} className='NavButton' id='DemoLoginButton'>
+            <button id='DemoLoginButtonText' onClick={async (e)=>{await dispatch(login('demo@aa.io', 'password'))}}>
+              Demo Log In
+            </button>
+          </div>
+          <div hidden={user} className='NavButton' id='SignUpButton'>
+            <NavLink to="/sign-up" id='SignUpButtonText' exact={true} activeClassName="active">
+              Sign Up
+            </NavLink>
+          </div>
+          <div className='NavButton' id='DeckListButton'>
+            <NavLink to="/decks" exact={true} activeClassName="active">
+              Decks
+            </NavLink>
+          </div>
+          <div hidden={!user}>
+            <LogoutButton />
+          </div>
         </div>
-        <div hidden={user} className='NavButton' id='LoginButton'>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-        </div>
-        <div hidden={user} className='NavButton' id='DemoLoginButton'>
-          <button onClick={async (e)=>{await dispatch(login('demo@aa.io', 'password'))}}>
-            Demo Log In
-          </button>
-        </div>
-        <div hidden={user} className='NavButton' id='SignUpButton'>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-        </div>
-        <div className='NavButton' id='DeckListButton'>
-          <NavLink to="/decks" exact={true} activeClassName="active">
-            Decks
-          </NavLink>
-        </div>
-        <div hidden={!user}>
-          <LogoutButton />
+        <div className='HomeLinkHolder'>
+          <div id='HomeLink'>
+            <NavLink to="/" id='aTagLogo' exact={true} activeClassName="active">
+              <img border={0} alt="CraniumLand Logo" src={logo} width="55" height="55" />
+            </NavLink>
+          </div>
         </div>
       </div>
-      <form>
+      <form className='searchForm'>
         <input
         id='searchBar'
         type='text'
