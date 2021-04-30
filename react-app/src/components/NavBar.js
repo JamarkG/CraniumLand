@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import {login} from "../store/session"
+import Modal from "react-modal"
 import LogoutButton from './auth/LogoutButton';
 import './CSS/NavBar.css';
 
