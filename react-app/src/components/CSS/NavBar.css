@@ -1,0 +1,42 @@
+
+
+.TopHalfNav {
+    /* border: 1px green solid; */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.NavButton {
+    padding: 10px 10px 10px 10px;
+    border: .4px black solid;
+}
+
+#HomeLink {
+    justify-self: left;
+}
+
+#LoginButton {
+    background-color: rgb(211, 211, 211);
+}
+
+#DemoLoginButton {
+    background-color: rgb(0, 206, 0);
+}
+
+#SignUpButton {
+    background-color: orange;
+}
+
+#DeckListButton {
+    background-color: rgb(30, 210, 255);
+}
+
+#searchBar {
+    width: 80%;
+}
+
+#searchButton {
+    background-color: rgb(248, 61, 248);
+    width: 18%;
+}
