@@ -11,9 +11,10 @@ const StudyHall = () => {
     const cards = useSelector(state => state.deckStorage.cards)
 
     const [currentCard, setCurrentCard] = useState(0);
-    
+
     const [cardChars, setCardChars] = useState("");
     const [flipped, setFlipped] = useState(false)
+    const [deckEnd, setDeckEnd] = useState('Next Card')
 
     const { deckId }  = useParams();
 
@@ -40,6 +41,10 @@ const StudyHall = () => {
     const nextCard = () => {
         if (cards[currentCard + 1]){
             setCurrentCard(currentCard + 1)
+            setFlipped(false)
+            if(!cards[currentCard + 2]){
+                setDeckEnd('End Session')
+            }
             // setCardChars(cards[currentCard + 1].question)
         } else {
             history.push('/decks')
@@ -47,25 +52,29 @@ const StudyHall = () => {
     }
 
     const restart = () => {
+        setFlipped(false)
         setCurrentCard(0)
+        setDeckEnd('Next Card')
     }
 
-    
+
 
 
     return (
         <>
             {deck && (
-                <div className='outterDiv'>
+                <div className='outerDiv'>
                     <h3 className='deckName'>{`Deck: ${deck.name}`}</h3>
                     <h3 className='currentCard'>{`Card ${currentCard +1}/${cards.length}`}</h3>
                     <div className='cardContainer'>
-                        <div className='card' onClick={flipCard}>
-                            <p className='cardText'>{(flipped) ? cards[currentCard].answer : cards[currentCard].question}</p>
+                        <div className='card' >
+                                <div className='cardTextContainer' onClick={flipCard}>
+                                    <p className='cardText'>{(flipped) ? cards[currentCard].answer : cards[currentCard].question}</p>
+                                </div>
+                            <button className='nextButton' onClick={nextCard}>{deckEnd}</button>
+                            <button className='restartButton' onClick={restart}>Restart</button>
                         </div>
                     </div>
-                    <button className='nextButton' onClick={nextCard}>Next Card</button>
-                    <button className='restartButton' onClick={restart}>Restart</button>
                 </div>
             )}
         </>

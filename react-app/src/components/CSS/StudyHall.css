@@ -1,14 +1,14 @@
-.outterDiv{
+.outerDiv{
     background-color: rgb(244, 244, 244);
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     padding: 0px;
     display: grid;
-    grid-template-rows: 1fr;
+    grid-template-rows: 5% 10% 50% 3%;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-    'deckName deckName'
-    'currentCard currentCard' 
+    'deckName empty'
+    'currentCard currentCard'
     'card card'
     'restartButton nextButton'
 }
@@ -33,33 +33,41 @@
 }
 
 .nextButton{
-    grid-area: nextButton;
-    width: 100px;
-    margin-top: -30px;
-    margin-bottom: 30px;
-    margin-left: 250px;
-    /* position: relative; */
+    /* grid-area: nextButton; */
+    height: 8%;
+    width: 120px;
+    position: relative;
+    top:90%;
+    left: 14%;
 }
 
 .restartButton{
-    grid-area: restartButton;
+    /* grid-area: restartButton; */
+    height: 8%;
     width: 100px;
-    margin-top: -30px;
-    margin-bottom: 30px;
-    margin-left: 600px;
     position: relative;
+    top: 1%;
+    /* left:5%;
+    bottom:50%; */
 }
 
 .deckName{
     grid-area: deckName;
     margin-left: 150px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 
 .currentCard{
     grid-area: currentCard;
     margin-left: 150px;
-    margin-top: -5px;
+    /* margin-top: -5px; */
+}
+
+.cardTextContainer{
+    display:flex;
+    justify-content: center;
+    width: 500px;
+    height: 100%;
 }
 
 .cardText{
@@ -67,5 +75,6 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-    padding: 10px; 
+    padding: 10px;
+
 }
