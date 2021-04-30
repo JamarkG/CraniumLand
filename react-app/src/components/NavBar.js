@@ -24,21 +24,24 @@ const NavBar = () => {
     <nav>
       <div className='TopDivHolder'>
         <div className='TopHalfNav'>
-          <div hidden={user} className='NavButton' id='LoginButton'>
-            <NavLink to="/login" id='LoginButtonText' exact={true} activeClassName="active">
-              Login
-            </NavLink>
-          </div>
-          <div hidden={user} className='NavButton' id='DemoLoginButton'>
-            <button id='DemoLoginButtonText' onClick={async (e)=>{await dispatch(login('demo@aa.io', 'password'))}}>
-              Demo Log In
-            </button>
-          </div>
-          <div hidden={user} className='NavButton' id='SignUpButton'>
-            <NavLink to="/sign-up" id='SignUpButtonText' exact={true} activeClassName="active">
-              Sign Up
-            </NavLink>
-          </div>
+          {!user &&
+          <>
+            <div className='NavButton' id='LoginButton'>
+              <NavLink to="/login" id='LoginButtonText' exact={true} activeClassName="active">
+                Login
+              </NavLink>
+            </div>
+            <div className='NavButton' id='DemoLoginButton'>
+              <button id='DemoLoginButtonText' onClick={async (e)=>{await dispatch(login('demo@aa.io', 'password'))}}>
+                Demo Log In
+              </button>
+            </div>
+            <div className='NavButton' id='SignUpButton'>
+              <NavLink to="/sign-up" id='SignUpButtonText' exact={true} activeClassName="active">
+                Sign Up
+              </NavLink>
+            </div>
+          </>}
           <div className='NavButton' id='DeckListButton'>
             <NavLink to="/decks" exact={true} activeClassName="active">
               Decks

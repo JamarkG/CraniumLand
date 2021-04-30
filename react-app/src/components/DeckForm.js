@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
 import {createDeck} from "../store/deck"
+import './CSS/DeckForm.css'
 
 const DeckForm = () => {
     const dispatch = useDispatch();
