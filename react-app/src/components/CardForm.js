@@ -68,7 +68,7 @@ const CardForm = () => {
     return (
         <div id='CardFormDiv'>
             <div className='CardFormHeaders'>
-                <h2>{`Flashcards for this deck`}</h2>
+                <h2>{currentDeck && `Flashcards for ${currentDeck.name}`}</h2>
                 <h3 id='h3Text'><span className='h3Margin'></span>Question<span className='h3Margin2'></span>Answer</h3>
             </div>
             {currentCards &&
@@ -81,10 +81,10 @@ const CardForm = () => {
                         <div className='CardAnswerDiv'>
                             <p className='CardText' key={`a.${id}`}>{answer}</p>
                         </div>
-                        <button className='cardDeleteButton'
+                        {currentDeck && userId === currentDeck.userid &&<button className='cardDeleteButton'
                         onClick={onDelete}
                         value={id}
-                        >x</button>
+                        >x</button>}
                     </div>
                 })}
             </div>}
@@ -117,7 +117,7 @@ const CardForm = () => {
                 </div>
             </div>}
             <div className='BottomButtonDiv'>
-                <button id='DeleteDeckButton' className='BottomButton' onClick={deckDelete}>Delete This Deck</button>
+                {currentDeck && userId === currentDeck.userid && <button id='DeleteDeckButton' className='BottomButton' onClick={deckDelete}>Delete This Deck</button>}
                 <span className='BottomButtonMargin'></span>
                 {currentCards && !!currentCards.length &&
                 <div>

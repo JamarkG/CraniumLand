@@ -1,0 +1,50 @@
+
+.TopDivDeckForm {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formDiv {
+    background-color: white;
+    border-radius: 7px;
+    /* border: .5px solid black; */
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0px 0px 0px;
+    box-shadow: 0px 0px 12px 1px;
+}
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.FormDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px 10px 0px;
+}
+
+.DeckFormSubmitButton {
+    margin: 20px 0px 20px 0px;
+    background-color: rgb(0, 206, 0);
+    border: none;
+    border-radius: 7px;
+    padding: 7px 15px 7px 15px;
+
+}
+
+#SelectField {
+    width: 153px;
+}
