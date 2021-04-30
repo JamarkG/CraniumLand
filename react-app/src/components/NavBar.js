@@ -4,6 +4,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import {login} from "../store/session"
 import LogoutButton from './auth/LogoutButton';
 import './CSS/NavBar.css';
+import LoginFormModal from './LoginFormModal';
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -28,9 +29,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div hidden={user} className='NavButton' id='LoginButton'>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
+          <LoginFormModal />
         </div>
         <div hidden={user} className='NavButton' id='DemoLoginButton'>
           <button onClick={async (e)=>{await dispatch(login('demo@aa.io', 'password'))}}>
