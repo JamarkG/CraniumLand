@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
 import {createDeck} from "../store/deck"
+import './CSS/DeckForm.css'
 
 const DeckForm = () => {
     const dispatch = useDispatch();
@@ -29,29 +30,37 @@ const DeckForm = () => {
 
 
     return (
-        <form onSubmit={onCreate}>
-            <div>
-                <label>Deck Name</label>
-                <input
-                type='text'
-                name='name'
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                ></input>
+        <div className='TopDivDeckForm'>
+            <div className='formDiv'>
+                <form className='Form' onSubmit={onCreate}>
+                    <div className='FormDiv'>
+                        <label className='Form'>Create a New Deck</label>
+                        <input
+                        type='text'
+                        name='name'
+                        className='Form'
+                        placeholder='Title'
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
+                        ></input>
+                    </div>
+                    <div className='FormDiv'>
+                        <label className='Form'>Add Tags</label>
+                        {tags.length > 0 &&
+                        <select
+                            type='text'
+                            name='tag'
+                            className='Form'
+                            id='SelectField'
+                            onChange={(e) => setTag(e.target.value)}
+                            value={tag}
+                            >{tags.map(({ id, name }) => <option key={id} value={id} >{name}</option>)}</select>
+                        }
+                    </div>
+                    <button className='DeckFormSubmitButton' type='submit'> Create Deck </button>
+                </form>
             </div>
-            <div>
-                <label>Deck Tag</label>
-                {tags.length > 0 &&
-                <select
-                    type='text'
-                    name='tag'
-                    onChange={(e) => setTag(e.target.value)}
-                    value={tag}
-                    >{tags.map(({ id, name }) => <option key={id} value={id} >{name}</option>)}</select>
-                }
-            </div>
-            <button type='submit'> Create Deck </button>
-        </form>
+        </div>
     )
 }
 
