@@ -11,7 +11,7 @@ const NavBar = () => {
   const history = useHistory();
   const [searchTerm, setSearchTerm] = useState('')
   const user = useSelector(state => state.session.user)
-  console.log(searchTerm)
+  console.log(user)
 
   const searchGo = async (e) => {
     e.preventDefault();
