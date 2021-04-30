@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 import { getCards, grabDeck } from "../store/deck";
+import './CSS/StudyHall.css'
 
 const StudyHall = () => {
     const history = useHistory();
@@ -45,21 +46,27 @@ const StudyHall = () => {
         }
     }
 
+    const restart = () => {
+        setCurrentCard(0)
+    }
+
     
 
 
     return (
         <>
             {deck && (
-                <>
-                    <h1>{`Deck: ${deck.name}`}</h1>
-                    <p>{`${currentCard +1}/${cards.length}`}</p>
-                    <div>
-                        <p>{(flipped) ? cards[currentCard].question : cards[currentCard].answer}</p>
+                <div className='outterDiv'>
+                    <h3 className='deckName'>{`Deck: ${deck.name}`}</h3>
+                    <h3 className='currentCard'>{`Card ${currentCard +1}/${cards.length}`}</h3>
+                    <div className='cardContainer'>
+                        <div className='card' onClick={flipCard}>
+                            <p className='cardText'>{(flipped) ? cards[currentCard].answer : cards[currentCard].question}</p>
+                        </div>
                     </div>
-                    <button onClick={flipCard}>Flip Card</button>
-                    <button onClick={nextCard}>Next Card</button>
-                </>
+                    <button className='nextButton' onClick={nextCard}>Next Card</button>
+                    <button className='restartButton' onClick={restart}>Restart</button>
+                </div>
             )}
         </>
     );

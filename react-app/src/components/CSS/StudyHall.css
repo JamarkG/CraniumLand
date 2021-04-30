@@ -1,0 +1,71 @@
+.outterDiv{
+    background-color: rgb(244, 244, 244);
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    'deckName deckName'
+    'currentCard currentCard' 
+    'card card'
+    'restartButton nextButton'
+}
+
+.cardContainer{
+    grid-area: card;
+    display: flex;
+    justify-content: center;
+}
+
+.card{
+    display: flex;
+    background-color: white;
+    width: 725px;
+    height: 350px;
+    /* border: 1px solid black; */
+    margin-top: 100px;
+    box-shadow: 0px 0px 12px 1px;
+    border-radius: 4px;
+    justify-content: center;
+    padding: 10px;
+}
+
+.nextButton{
+    grid-area: nextButton;
+    width: 100px;
+    margin-top: -30px;
+    margin-bottom: 30px;
+    margin-left: 250px;
+    /* position: relative; */
+}
+
+.restartButton{
+    grid-area: restartButton;
+    width: 100px;
+    margin-top: -30px;
+    margin-bottom: 30px;
+    margin-left: 600px;
+    position: relative;
+}
+
+.deckName{
+    grid-area: deckName;
+    margin-left: 150px;
+    margin-top: 50px;
+}
+
+.currentCard{
+    grid-area: currentCard;
+    margin-left: 150px;
+    margin-top: -5px;
+}
+
+.cardText{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 10px; 
+}
