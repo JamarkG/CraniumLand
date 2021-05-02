@@ -17,7 +17,7 @@ const CardForm = () => {
 
 
     const { deckId }  = useParams();
-    const userId = useSelector(state => state.session.user.id)
+    const session = useSelector(state => state.session)
 
 
     const onCreate = async (e) => {
@@ -81,14 +81,14 @@ const CardForm = () => {
                         <div className='CardAnswerDiv'>
                             <p className='CardText' key={`a.${id}`}>{answer}</p>
                         </div>
-                        {currentDeck && userId === currentDeck.userid &&<button className='cardDeleteButton'
+                        {currentDeck && session.user.userId === currentDeck.userid &&<button className='cardDeleteButton'
                         onClick={onDelete}
                         value={id}
                         >x</button>}
                     </div>
                 })}
             </div>}
-            {currentDeck && currentDeck.userid === userId &&
+            {currentDeck && currentDeck.userid === session.user.userId &&
             <div className='CardHolderDivInput'>
                 <div className='CardDiv'>
                     <form className='CardDiv' onSubmit={onCreate}>
@@ -117,7 +117,7 @@ const CardForm = () => {
                 </div>
             </div>}
             <div className='BottomButtonDiv'>
-                {currentDeck && userId === currentDeck.userid && <button id='DeleteDeckButton' className='BottomButton' onClick={deckDelete}>Delete This Deck</button>}
+                {currentDeck && session.user.userId === currentDeck.userid && <button id='DeleteDeckButton' className='BottomButton' onClick={deckDelete}>Delete This Deck</button>}
                 <span className='BottomButtonMargin'></span>
                 {currentCards && !!currentCards.length &&
                 <div>

@@ -57,11 +57,6 @@
     text-decoration: none;
 }
 
-#DeckListButton {
-    background-color: rgb(30, 210, 255);
-    justify-self: right;
-}
-
 #searchBar {
     width: 80%;
 }

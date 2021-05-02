@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import {createDeck} from "../store/deck"
 import './CSS/DeckForm.css'
 
-const DeckForm = () => {
+const DeckForm = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [name, setName] = useState('');
@@ -30,7 +30,7 @@ const DeckForm = () => {
 
 
     return (
-        <div className='TopDivDeckForm'>
+        <div  hidden={props.props} className='TopDivDeckForm' >
             <div className='formDiv'>
                 <form className='Form' onSubmit={onCreate}>
                     <div className='FormDiv'>

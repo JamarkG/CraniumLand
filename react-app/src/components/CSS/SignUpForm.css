@@ -1,8 +1,8 @@
 
 .TopDivDeckForm {
+    height: 100%;
+    width: 100%;
     /* display: flex; */
-    width: 500px;
-    height: 400px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -38,7 +38,7 @@
     padding: 10px 0px 10px 0px;
 }
 
-.DeckFormSubmitButton {
+.SignUpFormSubmitButton {
     margin: 20px 0px 20px 0px;
     background-color: rgb(0, 206, 0);
     border: none;

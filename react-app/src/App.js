@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import DeckList from "./components/DeckList";
 import User from "./components/User";
+import LandingPage from "./components/LandingPage"
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 import DeckForm from "./components/DeckForm"
@@ -19,7 +20,7 @@ function App() {
   // const [authenticated, setAuthenticated] = useState(false);
   const dispatch = useDispatch()
   const [loaded, setLoaded] = useState(false);
-  // let searchTerm = 
+  // let searchTerm =
 
   useEffect(() => {
     (async() => {
@@ -37,23 +38,21 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/login" exact={true}>
-          <LoginForm />
         </Route>
         <Route path="/sign-up" exact={true}>
-          <SignUpForm />
         </Route>
-        <Route path="/decks" exact={true} >
+        <ProtectedRoute path="/decks" exact={true} >
           <DeckList/>
-        </Route>
+        </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
-          <DeckForm />
-        </ProtectedRoute>
-        <ProtectedRoute path="/decks/:deckId" exact={true}>
+        <Route path="/" exact={true}>
+          <LandingPage/>
+        </Route>
+        <Route path="/decks/:deckId" exact={true}>
           <CardForm />
-        </ProtectedRoute>
+        </Route>
         <Route path="/decks/:deckId/study" exact={true}>
           <StudyHall />
         </Route>

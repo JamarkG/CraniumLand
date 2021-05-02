@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import {login} from "../store/session"
+import DeckForm from "./DeckForm"
+import LoginForm from "./auth/LoginForm";
+import SignUpForm from "./auth/SignUpForm";
 import LogoutButton from './auth/LogoutButton';
 import './CSS/NavBar.css';
 import logo from './CraniumLandLogo.png';
@@ -10,8 +13,9 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [searchTerm, setSearchTerm] = useState('')
+  const[hideLoginForm, setHideLoginForm] = useState(true)
+  const[hideSignUpForm, setHideSignUpForm] = useState(true)
   const user = useSelector(state => state.session.user)
-  console.log(user)
 
   const searchGo = async (e) => {
     e.preventDefault();
@@ -27,9 +31,17 @@ const NavBar = () => {
           {!user &&
           <>
             <div className='NavButton' id='LoginButton'>
-              <NavLink to="/login" id='LoginButtonText' exact={true} activeClassName="active">
+              <button onClick={(e)=>{
+                console.log(hideLoginForm)
+                setHideSignUpForm(true)
+                if(hideLoginForm === true){
+                  setHideLoginForm(false)
+                }
+                else {
+                  setHideLoginForm(true)
+              }}}>
                 Login
-              </NavLink>
+              </button>
             </div>
             <div className='NavButton' id='DemoLoginButton'>
               <button id='DemoLoginButtonText' onClick={async (e)=>{await dispatch(login('demo@aa.io', 'password'))}}>
@@ -37,16 +49,18 @@ const NavBar = () => {
               </button>
             </div>
             <div className='NavButton' id='SignUpButton'>
-              <NavLink to="/sign-up" id='SignUpButtonText' exact={true} activeClassName="active">
+            <button onClick={(e)=>{
+              setHideLoginForm(true)
+                if(hideSignUpForm === true){
+                  setHideSignUpForm(false)
+                }
+                else {
+                  setHideSignUpForm(true)
+              }}}>
                 Sign Up
-              </NavLink>
+              </button>
             </div>
           </>}
-          <div className='NavButton' id='DeckListButton'>
-            <NavLink to="/decks" exact={true} activeClassName="active">
-              Decks
-            </NavLink>
-          </div>
           <div hidden={!user}>
             <LogoutButton />
           </div>
@@ -67,6 +81,8 @@ const NavBar = () => {
         onChange={(e) => setSearchTerm(e.target.value)}></input>
         <button id='searchButton' onClick={searchGo}>Search</button>
       </form>
+      <LoginForm props={hideLoginForm}/>
+      <SignUpForm props={hideSignUpForm}/>
     </nav>
   );
 }
