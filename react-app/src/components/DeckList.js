@@ -4,6 +4,7 @@ import './CSS/DeckList.css'
 
 function DeckList() {
   const [decks, setDecks] = useState([]);
+  const [deckComponents, setDeckComponents] = useState()
 
   useEffect(() => {
     async function fetchData() {
@@ -12,16 +13,22 @@ function DeckList() {
       setDecks(responseData.decks);
     }
     fetchData();
+    if(decks) {
+      setDeckComponents(decks.map((deck) => {
+        // console.log(deck)
+        return (
+          <li className='DeckListItem' key={deck.id}>
+            <NavLink to={`/decks/${deck.id}`}>{deck.name}</NavLink>
+          </li>
+        );
+      }));
+  } else {
+    setDeckComponents(<p>No Decks!</p>)
+  }
+
   }, []);
 
-  const deckComponents = decks.map((deck) => {
-    // console.log(deck)
-    return (
-      <li className='DeckListItem' key={deck.id}>
-        <NavLink to={`/decks/${deck.id}`}>{deck.name}</NavLink>
-      </li>
-    );
-  });
+
 
   return (
     <div className='DeckListDiv'>

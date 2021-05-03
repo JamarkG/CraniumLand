@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import {login} from "../store/session"
-import DeckForm from "./DeckForm"
 import LoginForm from "./auth/LoginForm";
 import SignUpForm from "./auth/SignUpForm";
 import LogoutButton from './auth/LogoutButton';

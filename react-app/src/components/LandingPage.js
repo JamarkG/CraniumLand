@@ -8,7 +8,7 @@ import './CSS/LandingPage.css'
 const LandingPage = () => {
 
     const[hideDeckForm, setHideDeckForm] = useState(true)
-
+    const history = useHistory()
 
     return (
         <div>
@@ -25,9 +25,11 @@ const LandingPage = () => {
                 }}}
                 >New Deck</button>
                 <div className='deckButton' id='DeckListButton'>
-                    <a href="/decks">
+                    <div onClick={()=> {
+                        history.push("/decks")
+                    }}>
                     Decks
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -41,9 +41,9 @@ function App() {
         </Route>
         <Route path="/sign-up" exact={true}>
         </Route>
-        <ProtectedRoute path="/decks" exact={true} >
-          <DeckList/>
-        </ProtectedRoute>
+        <Route path="/decks" exact={true} >
+          <DeckList />
+        </Route>
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
         </ProtectedRoute>
