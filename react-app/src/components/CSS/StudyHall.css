@@ -39,6 +39,9 @@
     position: relative;
     top:90%;
     left: 14%;
+    border: none;
+    background-color: rgb(0, 206, 0);
+    border-radius: 7px;
 }
 
 .restartButton{
@@ -47,6 +50,9 @@
     width: 100px;
     position: relative;
     top: 1%;
+    border: none;
+    background-color: orange;
+    border-radius: 7px;
     /* left:5%;
     bottom:50%; */
 }

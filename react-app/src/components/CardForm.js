@@ -81,14 +81,14 @@ const CardForm = () => {
                         <div className='CardAnswerDiv'>
                             <p className='CardText' key={`a.${id}`}>{answer}</p>
                         </div>
-                        {currentDeck && session.user.userId === currentDeck.userid &&<button className='cardDeleteButton'
+                        {currentDeck && session.user && session.user.id === currentDeck.userid &&<button className='cardDeleteButton'
                         onClick={onDelete}
                         value={id}
                         >x</button>}
                     </div>
                 })}
             </div>}
-            {currentDeck && currentDeck.userid === session.user.userId &&
+            {currentDeck && session.user && currentDeck.userid === session.user.id &&
             <div className='CardHolderDivInput'>
                 <div className='CardDiv'>
                     <form className='CardDiv' onSubmit={onCreate}>
@@ -117,7 +117,7 @@ const CardForm = () => {
                 </div>
             </div>}
             <div className='BottomButtonDiv'>
-                {currentDeck && session.user.userId === currentDeck.userid && <button id='DeleteDeckButton' className='BottomButton' onClick={deckDelete}>Delete This Deck</button>}
+                {currentDeck && session.user && session.user.id === currentDeck.userid && <button id='DeleteDeckButton' className='BottomButton' onClick={deckDelete}>Delete This Deck</button>}
                 <span className='BottomButtonMargin'></span>
                 {currentCards && !!currentCards.length &&
                 <div>

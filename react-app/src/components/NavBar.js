@@ -30,7 +30,7 @@ const NavBar = () => {
           {!user &&
           <>
             <div className='NavButton' id='LoginButton'>
-              <button onClick={(e)=>{
+              <button id='LoginButtonText' onClick={(e)=>{
                 console.log(hideLoginForm)
                 setHideSignUpForm(true)
                 if(hideLoginForm === true){
@@ -48,14 +48,14 @@ const NavBar = () => {
               </button>
             </div>
             <div className='NavButton' id='SignUpButton'>
-            <button onClick={(e)=>{
-              setHideLoginForm(true)
-                if(hideSignUpForm === true){
-                  setHideSignUpForm(false)
-                }
-                else {
-                  setHideSignUpForm(true)
-              }}}>
+              <button id='SignUpButtonText' onClick={(e)=>{
+                setHideLoginForm(true)
+                  if(hideSignUpForm === true){
+                    setHideSignUpForm(false)
+                  }
+                  else {
+                    setHideSignUpForm(true)
+                }}}>
                 Sign Up
               </button>
             </div>

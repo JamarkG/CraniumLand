@@ -49,12 +49,16 @@
 #SignUpButtonText {
     color: white;
     text-decoration: none;
+    border: none;
+    background-color: orange;
 
 }
 
 #LoginButtonText {
     color: black;
     text-decoration: none;
+    border: none;
+    background-color: rgb(211, 211, 211);
 }
 
 #searchBar {
@@ -88,6 +92,7 @@
 .searchForm {
     display: flex;
     flex-direction: row;
+    height: 40px;
 }
 
 #LogoutButton {
