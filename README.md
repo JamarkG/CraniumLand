@@ -1,6 +1,6 @@
 # <a href="https://craniumland.herokuapp.com/">CraniumLand</a>
 
-Clone-lite of the popular website BrainScape, a place to find, create, and study flashcards. This was a group project with <a href="https://github.com/dylanbrooks">Dylan Brooks</a>, <a href="https://github.com/KevinKaras">Kevin Karas</a>, <a href="https://github.com/cpbeachler">Caleb Beachler</a>, and <a href="github.com/JamarkG">Mark Gregory</a>.
+Clone-lite of the popular website BrainScape, a place to find, create, and study flashcards. This was a group project with <a href="https://github.com/dylanbrooks" target="_blank">Dylan Brooks</a>, <a href="https://github.com/KevinKaras" target="_blank">Kevin Karas</a>, <a href="https://github.com/cpbeachler" target="_blank">Caleb Beachler</a>, and <a href="https://github.com/JamarkG" target="_blank">Mark Gregory</a>.
 
 ## Technologies Used
 
