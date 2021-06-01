@@ -15,6 +15,20 @@ Clone-lite of the popular website BrainScape, a place to find, create, and study
 - postgreSQL
 - Heroku
 
+## Views
+
+### Home Page Unauthenticated
+The landing page reflects the original Brainscape design.
+![Home Page Not Logged In](/react-app/public/images/UnprotectedHome.png "Home Page")
+
+### Create & View Flashcards in a Deck
+The layout of creating and viewing cards is a simple, intuitive, actionable, dashboard updating in real-time.
+![Create & View Cards](/react-app/public/images/CreateViewCards.png "Create & View Cards")
+
+### Study Flashcards
+The design is based on Brainscape's format, and all includes all parallel functionality.
+![Study Cards View](/react-app/public/images/UnprotectedHome.png "Study Cards View")
+
 ## Getting started Locally
 
 1. Clone this repository (only this branch)
