@@ -1,8 +1,21 @@
-# Flask React Project
+# <a href="https://craniumland.herokuapp.com/">CraniumLand</a>
 
-This is the backend for the Flask React project.
+Clone-lite of the popular website BrainScape, a place to find, create, and study flashcards. This was a group project with <a href="https://github.com/dylanbrooks">Dylan Brooks</a>, <a href="https://github.com/KevinKaras">Kevin Karas</a>, <a href="https://github.com/cpbeachler">Caleb Beachler</a>, and <a href="github.com/JamarkG">Mark Gregory</a>.
 
-## Getting started
+## Technologies Used
+
+- React.js
+- Redux
+- Python
+- Flask
+- JavaScript
+- Node.js
+- HTML5
+- CSS3
+- postgreSQL
+- Heroku
+
+## Getting started Locally
 
 1. Clone this repository (only this branch)
 
@@ -54,7 +67,7 @@ This is the backend for the Flask React project.
    There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
 ***
 
-## Deploy to Heroku
+<!-- ## Deploy to Heroku
 
 1. Create a new project on Heroku
 2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
@@ -95,4 +108,4 @@ This is the backend for the Flask React project.
 
 10. Under Settings find "Config Vars" and add any additional/secret .env variables.
 
-11. profit
+11. profit -->
