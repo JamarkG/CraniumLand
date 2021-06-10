@@ -29,6 +29,7 @@ const LandingPage = () => {
             <DeckForm props={hideDeckForm}/>
             <div>
                 <img className='backDrop' src={backDrop}></img>
+                <h1 className='title'>Rise to <br/> our challenge!</h1>
                 <button className="newDeck"
                 onClick={newDeckButton}
                 >New Deck</button>
@@ -38,7 +39,11 @@ const LandingPage = () => {
                     }>
                     Decks
                     </div>
+                <p className='description'>Our decks page will take you to a list of flash card decks! Once logged in, selecting the New Deck button will allow you to
+                    create your own deck, or create or delete cards within a deck you own.
+                </p>
             </div>
+
         </div>
     )
 }
