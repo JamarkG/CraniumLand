@@ -32,13 +32,12 @@ const LandingPage = () => {
                 <button className="newDeck"
                 onClick={newDeckButton}
                 >New Deck</button>
-                <div className='deckButton' id='DeckListButton'>
-                    <div onClick={()=> {
+                <div className='deckButton' id='DeckListButton' onClick={()=> {
                         history.push("/decks")
-                    }}>
+                        }
+                    }>
                     Decks
                     </div>
-                </div>
             </div>
         </div>
     )

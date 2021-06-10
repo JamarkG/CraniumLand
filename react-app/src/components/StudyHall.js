@@ -42,7 +42,7 @@ const StudyHall = () => {
         if (cards[currentCard + 1]){
             setCurrentCard(currentCard + 1)
             setFlipped(false)
-            if(!cards[currentCard + 2]){
+            if(!cards[currentCard + 2] || cards.length === 1){
                 setDeckEnd('End Session')
             }
             // setCardChars(cards[currentCard + 1].question)
@@ -71,7 +71,7 @@ const StudyHall = () => {
                                 <div className='cardTextContainer' onClick={flipCard}>
                                     <p className='cardText'>{(flipped) ? cards[currentCard].answer : cards[currentCard].question}</p>
                                 </div>
-                            <button className='nextButton' onClick={nextCard}>{deckEnd}</button>
+                            <button className='nextButton' onClick={nextCard}>{(cards.length > 1 ? deckEnd : 'End Session')}</button>
                             <button className='restartButton' onClick={restart}>Restart</button>
                         </div>
                     </div>
