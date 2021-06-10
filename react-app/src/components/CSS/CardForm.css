@@ -52,6 +52,7 @@ body {
     border-radius: 7px;
     margin: 0px 0px 15px 0px;
     padding: 1px 8px 16px 8px;
+    cursor: pointer;
 }
 
 .cardAddButton {
@@ -60,6 +61,7 @@ body {
     border-radius: 7px;
     margin: 0px 0px 15px 0px;
     padding: 0px 8px 0px 8px;
+    cursor: pointer;
 }
 
 .CardHolderDiv {
@@ -123,9 +125,11 @@ body {
 #StudyDeckButton {
     background-color: rgb(30, 210, 255);
     box-shadow: 2px 2px 7px rgb(30, 210, 255);
+    cursor: pointer;
 }
 
 #DeleteDeckButton {
     background-color: red;
     box-shadow: 2px 2px 7px red;
+    cursor: pointer;
 }
