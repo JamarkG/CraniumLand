@@ -80,8 +80,8 @@ const NavBar = () => {
         onChange={(e) => setSearchTerm(e.target.value)}></input>
         <button id='searchButton' onClick={searchGo}>Search</button>
       </form>
-      <LoginForm props={hideLoginForm}/>
-      <SignUpForm props={hideSignUpForm}/>
+      <LoginForm logInHide={hideLoginForm} signUpHide={hideSignUpForm} />
+      <SignUpForm signUpHide={hideSignUpForm} logInHide={hideLoginForm}/>
     </nav>
   );
 }
