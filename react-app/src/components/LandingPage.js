@@ -6,9 +6,23 @@ import backDrop from './CraniumLandBackCrop.PNG'
 import './CSS/LandingPage.css'
 
 const LandingPage = () => {
-
+    const user = useSelector(state => state.session.user)
     const[hideDeckForm, setHideDeckForm] = useState(true)
     const history = useHistory()
+
+    const newDeckButton = function(){
+        if(user){
+            console.log(user)
+            if(hideDeckForm === true){
+            setHideDeckForm(false)
+            }
+            else {
+            setHideDeckForm(true)
+            }
+        } else {
+            window.alert('Please login to create a deck!')
+        }
+    }
 
     return (
         <div>
@@ -16,13 +30,7 @@ const LandingPage = () => {
             <div>
                 <img className='backDrop' src={backDrop}></img>
                 <button className="newDeck"
-                onClick={(e)=>{
-                    if(hideDeckForm === true){
-                        setHideDeckForm(false)
-                    }
-                    else {
-                        setHideDeckForm(true)
-                }}}
+                onClick={newDeckButton}
                 >New Deck</button>
                 <div className='deckButton' id='DeckListButton'>
                     <div onClick={()=> {
