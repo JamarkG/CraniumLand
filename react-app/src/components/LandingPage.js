@@ -6,32 +6,44 @@ import backDrop from './CraniumLandBackCrop.PNG'
 import './CSS/LandingPage.css'
 
 const LandingPage = () => {
-
+    const user = useSelector(state => state.session.user)
     const[hideDeckForm, setHideDeckForm] = useState(true)
     const history = useHistory()
+
+    const newDeckButton = function(){
+        if(user){
+            console.log(user)
+            if(hideDeckForm === true){
+            setHideDeckForm(false)
+            }
+            else {
+            setHideDeckForm(true)
+            }
+        } else {
+            window.alert('Please login to create a deck!')
+        }
+    }
 
     return (
         <div>
             <DeckForm props={hideDeckForm}/>
             <div>
                 <img className='backDrop' src={backDrop}></img>
+                <h1 className='title'>Rise to <br/> our challenge!</h1>
                 <button className="newDeck"
-                onClick={(e)=>{
-                    if(hideDeckForm === true){
-                        setHideDeckForm(false)
-                    }
-                    else {
-                        setHideDeckForm(true)
-                }}}
+                onClick={newDeckButton}
                 >New Deck</button>
-                <div className='deckButton' id='DeckListButton'>
-                    <div onClick={()=> {
+                <div className='deckButton' id='DeckListButton' onClick={()=> {
                         history.push("/decks")
-                    }}>
+                        }
+                    }>
                     Decks
                     </div>
-                </div>
+                <p className='description'>Our decks page will take you to a list of flash card decks! Once logged in, selecting the New Deck button will allow you to
+                    create your own deck, or create or delete cards within a deck you own.
+                </p>
             </div>
+
         </div>
     )
 }

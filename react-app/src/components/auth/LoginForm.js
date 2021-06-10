@@ -32,7 +32,7 @@ const LoginForm = (props) => {
   }
 
   return (
-    <div hidden={props.props} className='TopDivDeckForm' >
+    <div hidden={props.logInHide} className='TopDivDeckForm' >
       <div className='formDiv'>
         <form onSubmit={onLogin}
         className='Form'>

@@ -16,6 +16,7 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    cursor: pointer;
 }
 
 #HomeLink {
@@ -23,26 +24,31 @@
     display: flex;
     /* justify-content: flex-start; */
     justify-self: start;
+    cursor: pointer;
 }
 
 #LoginButton {
     background-color: rgb(211, 211, 211);
+    cursor: pointer;
     /* justify-self: flex-end; */
 }
 
 #DemoLoginButton {
     background-color: rgb(0, 206, 0);
+    cursor: pointer;
     /* justify-self: flex-end; */
 }
 
 #DemoLoginButtonText {
     border: none;
-    background-color: rgb(0, 206, 0)
+    background-color: rgb(0, 206, 0);
+    cursor: pointer;
 }
 
 #SignUpButton {
     background-color: orange;
     width: 77px;
+    cursor: pointer;
     /* justify-self: right; */
 }
 
@@ -51,6 +57,7 @@
     text-decoration: none;
     border: none;
     background-color: orange;
+    cursor: pointer;
 
 }
 
@@ -59,10 +66,12 @@
     text-decoration: none;
     border: none;
     background-color: rgb(211, 211, 211);
+    cursor: pointer;
 }
 
 #searchBar {
     width: 80%;
+    cursor: text;
 }
 
 #searchButton {
@@ -70,6 +79,7 @@
     width: 20%;
     color: white;
     border: none;
+    cursor: pointer;
 }
 
 .TopDivHolder {
@@ -99,4 +109,5 @@
     background-color: white;
     color: black;
     border: none;
+    cursor: pointer;
 }
