@@ -7,7 +7,7 @@
 
 
 .deckButton {
-    padding: 0px 10px 0px 10px;
+    /* padding: 0px 10px 0px 10px; */
     /* border: .4px black solid; */
     display: flex;
     justify-content: center;
@@ -16,11 +16,12 @@
     width: 160px;
     position: absolute;
     top:70%;
-    left:10%;
+    right: 76%;
     border-radius: 7px;
     box-shadow: 0px 0px 12px 1px;
     text-decoration: none;
     cursor: pointer;
+    /* we need to re-organize the landing page div with buttons to allow for auto-resizing appropriately */
 }
 
 #DeckListButton {
@@ -43,9 +44,9 @@
 .newDeck{
     position: absolute;
     top: 70%;
-    right: 65%;
+    right: 60%;
     height: 80px;
-    width: 180px;
+    width: 160px;
     border-radius: 7px;
     background-color: white;
     color: black;
