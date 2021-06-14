@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch} from "react-redux";
 import { BrowserRouter, Route, Switch, useParams } from "react-router-dom";
-import LoginForm from "./components/auth/LoginForm";
-import SignUpForm from "./components/auth/SignUpForm";
+// import LoginForm from "./components/auth/LoginForm";
+// import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import DeckList from "./components/DeckList";
@@ -14,6 +14,7 @@ import DeckForm from "./components/DeckForm"
 import CardForm from "./components/CardForm"
 import StudyHall from "./components/StudyHall"
 import Search from "./components/Search"
+import Creators from "./components/Creators"
 
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
           <Search />
         </Route>
       </Switch>
+      <Creators />
     </BrowserRouter>
   );
 }

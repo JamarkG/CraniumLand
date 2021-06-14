@@ -10,9 +10,9 @@ function DeckList() {
     async function fetchData() {
       const response = await fetch("/api/decks/");
       const responseData = await response.json();
-      console.log(responseData.decks)
+      // console.log(responseData.decks)
       await setDecks(responseData.decks);
-      console.log(decks)
+      // console.log(decks)
       await setDeckComponents(responseData.decks.map((deck) => {
         return (
           <li className='DeckListItem' key={deck.id}>

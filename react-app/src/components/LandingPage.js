@@ -25,9 +25,9 @@ const LandingPage = () => {
     }
 
     return (
-        <div>
+        <div className="TopLandingDiv">
             <DeckForm props={hideDeckForm}/>
-            <div>
+            <div className="TopLandingDiv">
                 <img className='backDrop' src={backDrop}></img>
                 <h1 className='title'>Rise to <br/> our challenge!</h1>
                 <button className="newDeck"

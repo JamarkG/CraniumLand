@@ -1,0 +1,24 @@
+
+.Footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    bottom: 0px;
+    background-color: rgb(190, 190, 190);
+    width: 100%;
+}
+
+.CreatorsDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.Creator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
