@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from 'react-router-dom';
 import { getCards, createCard, deleteCard, grabDeck, deleteDeck } from "../store/deck";
+import EditForm from "./EditForm";
 import './CSS/CardForm.css'
 
 const CardForm = () => {
@@ -10,6 +11,8 @@ const CardForm = () => {
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
     const [cards, setCards] = useState([]);
+    const [editing, setEditing] = useState(false)
+    const [editCard, setEditCard] = useState({})
     const currentCards = useSelector(state => state.deckStorage.cards)
     const currentDeck = useSelector(state => state.deckStorage.deck)
     const currentStore = useSelector(state => state.deckStorage)
@@ -22,17 +25,23 @@ const CardForm = () => {
 
     const onCreate = async (e) => {
         e.preventDefault();
-        await dispatch(createCard(deckId, question, answer));
+        dispatch(createCard(deckId, question, answer));
         setAnswer('')
         setQuestion('')
     }
 
     const onDelete = async (e) => {
         const cardId = e.target.value
-        // console.log(e.target.value)
 
         await dispatch(deleteCard(cardId, deckId))
 
+    }
+
+    const onEdit = async (e) => {
+        const cardPosition = e.target.value
+        setEditCard(currentCards[cardPosition])
+
+        // setEditing(true)
     }
 
     const deckDelete = async (e) => {
@@ -50,30 +59,31 @@ const CardForm = () => {
     useEffect(async () => {
         await dispatch(getCards(deckId))
         await dispatch(grabDeck(deckId))
-        setCards(currentCards)
+        await setCards(currentCards)
     }, []);
 
     useEffect(async() => {
-        setCards(currentCards)
+        await setCards(currentCards)
 
     }, [onCreate])
 
     useEffect(async() => {
-        setCards(currentCards)
+        await setCards(currentCards)
 
-    }, [onDelete])
+    }, [onDelete, onEdit])
 
 
 
     return (
         <div id='CardFormDiv'>
+            <EditForm hidden={!editing} props={editCard} />
             <div className='CardFormHeaders'>
                 <h2>{currentDeck && `Flashcards for ${currentDeck.name}`}</h2>
                 <h3 id='h3Text'><span className='h3Margin'></span>Question<span className='h3Margin2'></span>Answer</h3>
             </div>
             {currentCards &&
             <div className='CardHolderDiv'>
-                {currentCards.map(({ id, question, answer }) => {
+                {currentCards.map(({ id, question, answer }, index) => {
                     return <div className='CardDiv'>
                         <div className='CardQuestionDiv'>
                             <p className='CardText' key={`q.${id}`}>{question}</p>
@@ -81,10 +91,15 @@ const CardForm = () => {
                         <div className='CardAnswerDiv'>
                             <p className='CardText' key={`a.${id}`}>{answer}</p>
                         </div>
-                        {currentDeck && session.user && session.user.id === currentDeck.userid &&<button className='cardDeleteButton'
+                        {currentDeck && session.user && session.user.id === currentDeck.userid &&<><button className='cardDeleteButton'
                         onClick={onDelete}
                         value={id}
-                        >x</button>}
+                        >x</button>
+                        <button className='cardEditButton'
+                        onClick={onEdit}
+                        value={index}
+                        >Edit</button>
+                        </>}
                     </div>
                 })}
             </div>}
