@@ -34,6 +34,7 @@ const LoginForm = (props) => {
   return (
     <div hidden={props.logInHide} className='TopDivDeckForm' >
       <div className='formDiv'>
+        <h3>Log in to CraniumLand</h3>
         <form onSubmit={onLogin}
         className='Form'>
           <div
@@ -42,7 +43,7 @@ const LoginForm = (props) => {
               <div>{error}</div>
             ))}
           </div>
-          <div>
+          <div className="InputDiv">
             <label
             htmlFor="email"
             className='Form'>
@@ -56,7 +57,7 @@ const LoginForm = (props) => {
               onChange={updateEmail}
             />
           </div>
-          <div className='Form'>
+          <div className='InputDiv'>
             <label
             htmlFor="password"
             className='Form'>

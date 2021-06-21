@@ -30,6 +30,14 @@
     align-items: center;
 }
 
+.InputDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0 5px 0;
+}
+
 .FormDiv {
     display: flex;
     flex-direction: column;

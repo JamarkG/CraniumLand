@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
+import "./CSS/Search.css"
 
 function Search() {
     const [decks, setDecks] = useState([]);
-    const { searchTerm } = useParams(); 
+    const { searchTerm } = useParams();
 
     useEffect(() => {
         async function fetchData() {
@@ -25,10 +26,10 @@ function Search() {
     });
 
     return (
-        <>
+        <div className="SearchResults">
             <h1>Search Results: </h1>
             <ul>{searchResults}</ul>
-        </>
+        </div>
     );
 }
 

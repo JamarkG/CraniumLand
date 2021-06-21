@@ -42,43 +42,48 @@ const SignUpForm = (props) => {
   return (
     <div hidden={props.signUpHide} className='TopDivDeckForm'>
       <div className='formDiv'>
+        <h3>Sign up for CraniumLand</h3>
         <form
         onSubmit={onSignUp}
         className='Form'>
-          <div className='Form'>
+          <div className='InputDiv'>
             <label className='Form'>User Name</label>
             <input
               type="text"
+              placeholder="User Name"
               name="username"
               onChange={updateUsername}
               value={username}
               className='Form'
             ></input>
           </div>
-          <div className='Form'>
+          <div className='InputDiv'>
             <label className='Form'>Email</label>
             <input
               type="text"
+              placeholder="Email Address"
               name="email"
               onChange={updateEmail}
               value={email}
               className='Form'
             ></input>
           </div>
-          <div className='Form'>
+          <div className='InputDiv'>
             <label className='Form'>Password</label>
             <input
               type="password"
+              placeholder="Password"
               name="password"
               onChange={updatePassword}
               value={password}
               className='Form'
             ></input>
           </div>
-          <div className='Form'>
+          <div className='InputDiv'>
             <label className='Form'>Repeat Password</label>
             <input
               type="password"
+              placeholder="Repeat Password"
               name="repeat_password"
               onChange={updateRepeatPassword}
               value={repeatPassword}

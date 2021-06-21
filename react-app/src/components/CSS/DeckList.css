@@ -1,4 +1,8 @@
 
+.DeckListDiv {
+    height: 80%;
+}
+
 .DeckListItem {
     margin: 5px 0px 5px 0px;
 }
