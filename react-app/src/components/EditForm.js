@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
+import {editCard} from '../../src/store/deck'
 
 const EditForm = (props) => {
     const dispatch = useDispatch()
@@ -10,10 +11,22 @@ const EditForm = (props) => {
     let setEditing = props.hook
     const [question, setQuestion] = useState('')
     const [answer, setAnswer] = useState('')
+
+    
     const submitEdit = async (e) => {
         e.preventDefault()
-        // dispatch thing to edit
+
+        // const toEditCard = {
+        //     id: oldCardData.id, 
+        //     question: question
+        // }
+        // console.log(oldCardData)
+        const createdPost = await dispatch(editCard(oldCardData.deckid, oldCardData.id, question, answer))
+
+
+        setEditing(false)
     }
+
     const cancelEdit = () => {
         setQuestion('')
         setAnswer('')
@@ -21,6 +34,7 @@ const EditForm = (props) => {
     }
 
     useEffect(() => {
+        
         if(oldCardData?.question){setQuestion(oldCardData.question)}
         if(oldCardData?.answer){setAnswer(oldCardData.answer)}
     }, [props.hide]);

@@ -41,6 +41,7 @@ const CardForm = () => {
         e.preventDefault()
         const cardPosition = e.target.value
         setEditCard(currentCards[cardPosition])
+        
         setEditing(true)
     }
 
