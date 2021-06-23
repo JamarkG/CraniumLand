@@ -5,18 +5,28 @@ import { useHistory, useParams } from 'react-router-dom';
 const EditForm = (props) => {
     const dispatch = useDispatch()
     const params = useParams()
-    const oldCardData = props
+    const oldCardData = props.oldCardData
+    let hide = props.hide
+    let setEditing = props.hook
     const [question, setQuestion] = useState('')
-    if(oldCardData.question){setQuestion(oldCardData.question)}
     const [answer, setAnswer] = useState('')
-    if(oldCardData.answer){setAnswer(oldCardData.answer)}
     const submitEdit = async (e) => {
         e.preventDefault()
         // dispatch thing to edit
     }
+    const cancelEdit = () => {
+        setQuestion('')
+        setAnswer('')
+        setEditing(false)
+    }
+
+    useEffect(() => {
+        if(oldCardData?.question){setQuestion(oldCardData.question)}
+        if(oldCardData?.answer){setAnswer(oldCardData.answer)}
+    }, [props.hide]);
 
     return (
-<div className='CardHolderDivInput'>
+<div className='EditCardHolderDivInput' hidden={props.hide}>
                 <div className='CardDiv'>
                     <form className='CardDiv' onSubmit={submitEdit}>
                         <div className='CardQuestionDiv'>
@@ -39,7 +49,8 @@ const EditForm = (props) => {
                             value={answer}
                             ></input>
                         </div>
-                        <button className='cardAddButton' type='submit'>+</button>
+                        <button className='cardAddButton' type='submit'>✔️</button>
+                        <button className='cardAddCancelButton' onClick={cancelEdit}>x</button>
                     </form>
                 </div>
             </div>

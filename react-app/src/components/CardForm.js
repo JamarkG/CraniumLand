@@ -38,10 +38,10 @@ const CardForm = () => {
     }
 
     const onEdit = async (e) => {
+        e.preventDefault()
         const cardPosition = e.target.value
         setEditCard(currentCards[cardPosition])
-
-        // setEditing(true)
+        setEditing(true)
     }
 
     const deckDelete = async (e) => {
@@ -70,13 +70,13 @@ const CardForm = () => {
     useEffect(async() => {
         await setCards(currentCards)
 
-    }, [onDelete, onEdit])
+    }, [onDelete])
 
 
 
     return (
         <div id='CardFormDiv'>
-            <EditForm hidden={!editing} props={editCard} />
+            <EditForm hide={!editing} oldCardData={editCard} hook={setEditing} />
             <div className='CardFormHeaders'>
                 <h2>{currentDeck && `Flashcards for ${currentDeck.name}`}</h2>
                 <h3 id='h3Text'><span className='h3Margin'></span>Question<span className='h3Margin2'></span>Answer</h3>
