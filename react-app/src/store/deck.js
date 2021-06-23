@@ -3,6 +3,7 @@ const SET_CARDS = "deckStorage/SET_CARDS";
 const ADD_CARD = "deckStorage/ADD_CARD";
 const DEL_CARD = "deckStorage/DEL_CARD";
 const DEL_DECK = "deckStorage/DEL_DECK";
+const CHANGE_CARD = "deckStorage/CHANGE_CARD";
 
 const addCard = (card) => ({
     type: ADD_CARD,
@@ -28,6 +29,13 @@ const delDeck = (deck) => ({
     type: DEL_DECK,
     payload: deck
 })
+
+const changeCard = (card) => ({
+    type: CHANGE_CARD,
+    payload: card
+})
+
+
 
 export const grabDeck = (id) => async (dispatch)=> {
     const response = await fetch(`/api/decks/${id}`);
@@ -98,6 +106,32 @@ export const deleteCard = (cardId, deckId) => async (dispatch) => {
     await dispatch(delCard(cardId))
 }
 
+
+export const editCard = (deckId, id, question, answer) => async (dispatch) => {
+    const response = await fetch(`/api/decks/${deckId}/cards/${id}/edit`, {
+        method: "POST", 
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            deckId,
+            id, 
+            question,
+            answer
+        })
+    });
+    
+    const editedCard = await response.json();
+    console.log(editedCard)
+    await dispatch(changeCard(editedCard))
+
+    
+}
+
+
+
+
+
 const initialState = {};
 
 export default function reducer(state = initialState, action) {
@@ -115,6 +149,16 @@ export default function reducer(state = initialState, action) {
             return {cards: [action.payload]}
         case DEL_CARD:
             return {...state, cards: [...state.cards.filter(card => card.id !== Number(action.payload))]}
+        case CHANGE_CARD:
+            let cards = [...state.cards.map(card => {
+                if(card.id === Number(action.payload.id)){
+                card = action.payload
+                }
+                return card
+            })]
+            
+            return {...state, cards}
+            
         default:
             return state;
     }

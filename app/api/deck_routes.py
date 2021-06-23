@@ -69,3 +69,22 @@ def delete_card(deckId, cardId):
     db.session.delete(card)
     db.session.commit()
     return {"success" : "this worked"}
+
+
+
+@deck_routes.route('/<int:deckId>/cards/<int:cardId>/edit', methods=['POST'])
+def edit_card(deckId, cardId):
+    form = CardForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    oldCard = Card.query.get(cardId)
+    print(oldCard)
+    question = form.data["question"]
+    answer = form.data["answer"]
+
+    oldCard.answer = answer
+    oldCard.question = question
+    
+    db.session.commit()
+
+    print(oldCard)
+    return oldCard.to_dict()
