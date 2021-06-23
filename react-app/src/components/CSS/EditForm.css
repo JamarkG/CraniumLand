@@ -1,0 +1,8 @@
+.cardAddCancelButton{
+    background-color: rgb(255, 0, 0);
+    height: 20px;
+    border-radius: 7px;
+    margin: 0px 5px 15px 0px;
+    padding: 1px 8px 16px 8px;
+    cursor: pointer;
+}
